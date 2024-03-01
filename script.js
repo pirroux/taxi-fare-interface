@@ -1,11 +1,11 @@
-let taxiFareApiUrl = 'http://localhost:8001/predict'; // replace with your API endpoint
+let taxiFareApiUrl = 'https://taxifare-rzmzgz4ogq-ew.a.run.app/predict'; // replace with your API endpoint
 const centralCoordinates = [-74.00597, 40.71427]; // starting position [lng, lat]
 
-if (window.location.href.includes('https://taxifare.lewagon.com')) {
-  taxiFareApiUrl = 'https://taxifare.lewagon.ai/predict';
+if (window.location.href.includes('https://taxifare-rzmzgz4ogq-ew.a.run.app/')) {
+  taxiFareApiUrl = 'https://taxifare-rzmzgz4ogq-ew.a.run.app/predict';
 }
 
-mapboxgl.accessToken = 'pk.eyJ1Ijoia3Jva3JvYiIsImEiOiJja2YzcmcyNDkwNXVpMnRtZGwxb2MzNWtvIn0.69leM_6Roh26Ju7Lqb2pwQ';
+mapboxgl.accessToken = 'pk.eyJ1IjoicGlycm91eCIsImEiOiJjbHQ4bGRoamwwM250Mm5tc2p5NGttYWZkIn0._3ZpG0qHikA-pp4CvJ0JJw';
 
 const displayMap = (start, stop) => {
   const map = new mapboxgl.Map({
@@ -210,7 +210,7 @@ const predict = () => {
       .then(data => {
         document.getElementById('fare').classList.remove('d-none');
         const fareResult = document.getElementById('predicted-fare');
-        const fare = Math.round(data['fare'] * 100) / 100
+        const fare = Math.round(data['fare_amount'] * 100) / 100
         fareResult.innerText = `$${fare}`;
       })
       .catch((error) => {
